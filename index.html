@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <!-- Chuyển hướng sau 15 giây -->
+  <meta http-equiv="refresh" content="15;url=link.html">
   <title>Load</title>
-
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-
     body{
       background:#000;
       display:flex;
@@ -17,13 +16,11 @@
       min-height:100vh;
       font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif;
     }
-
     .spinner{
       width:56px;
       height:56px;
       animation:rotate 2s linear infinite;
     }
-
     .path{
       stroke:#fff;
       stroke-width:4;
@@ -32,11 +29,9 @@
       stroke-dasharray:1,200;
       animation:dash 1.5s ease-in-out infinite;
     }
-
     @keyframes rotate{
       100%{transform:rotate(360deg)}
     }
-
     @keyframes dash{
       0%{
         stroke-dasharray:1,200;
@@ -53,22 +48,17 @@
     }
   </style>
 </head>
-
 <body>
-
   <svg class="spinner" viewBox="25 25 50 50">
     <circle class="path" cx="50" cy="50" r="20"></circle>
   </svg>
 
   <script>
     let dots = 0;
-
     setInterval(() => {
       dots = (dots + 1) % 4;
       document.title = "Load" + ".".repeat(dots);
     }, 500);
   </script>
-
 </body>
 </html>
- 
