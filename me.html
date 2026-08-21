@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load</title>
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        
+        body {
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+        }
+
+        /* Bố cục xếp dọc */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+        }
+
+        /* CẬP NHẬT: Tăng kích thước logo lên 250px để to rõ hơn */
+        .logo-box {
+            width: 250px; 
+            height: auto;
+            overflow: visible !important;
+            /* Giữ nguyên hào quang trắng dịu nhẹ xung quanh logo */
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.35));
+        }
+
+        /* Đảm bảo không bị lỗi cắt khung hình vuông */
+        .logo-box svg, .logo-box g, .logo-box path {
+            overflow: visible !important;
+        }
+
+        /* Khung chứa vòng xoay SVG */
+        .spinner {
+            width: 56px;
+            height: 56px;
+            overflow: visible !important;
+            animation: rotate 2s linear infinite;
+        }
+
+        /* Thuộc tính nét vẽ của vòng xoay */
+        .path {
+            stroke-width: 4;
+            stroke-linecap: round;
+            fill: none;
+            stroke-dasharray: 40, 200;
+            transform-origin: center;
+            overflow: visible !important;
+            animation: dash 1.5s ease-in-out infinite;
+        }
+
+        /* Các màu nhạt phối ánh sáng dịu của vòng xoay */
+        .light-green {
+            stroke: #a8e6cf;
+            stroke-dashoffset: 0;
+            filter: drop-shadow(0 0 6px rgba(168, 230, 207, 0.8));
+        }
+        
+        .light-blue {
+            stroke: #a8d8ea;
+            stroke-dashoffset: -32;
+            filter: drop-shadow(0 0 6px rgba(168, 216, 234, 0.8));
+        }
+        
+        .light-red {
+            stroke: #ffaaa6;
+            stroke-dashoffset: -64;
+            filter: drop-shadow(0 0 6px rgba(255, 170, 166, 0.8));
+        }
+        
+        .light-yellow{
+            stroke: #ffd3b6;
+            stroke-dashoffset: -96;
+            filter: drop-shadow(0 0 6px rgba(255, 211, 182, 0.8));
+        }
+
+        /* Hiệu ứng xoay tròn */
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Hiệu ứng co giãn dải màu */
+        @keyframes dash {
+            0% { stroke-dasharray: 1, 200; }
+            50% { stroke-dasharray: 45, 200; }
+            100% { stroke-dasharray: 1, 200; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- 1. HÌNH LOGO SVG MỚI (ĐÃ TĂNG KÍCH THƯỚC) -->
+        <div class="logo-box">
+            <svg version="1.1" xmlns="http://w3.org" xmlns:xlink="http://w3.org" width="100%" height="100%" viewBox="0 0 122.63864 105.98065">
+                <g transform="translate(-178.68068,-127.00967)">
+                    <g stroke="none" stroke-width="0" stroke-miterlimit="10">
+                        <path d="M198.42945,189.27373c-4.92621,0 -8.91969,-3.99348 -8.91969,-8.91969v-23.49759c0,-4.92621 3.99348,-8.91969 8.91969,-8.91969h23.49759c4.92621,0 8.91969,3.99348 8.91969,8.91969v23.49759c0,4.92621 -3.99348,8.91969 -8.91969,8.91969z" fill="#ffe280"/>
+                        <path d="M238.97768,206.50476c-9.47358,0 -17.15344,-7.67986 -17.15344,-17.15344v-45.1882c0,-9.47358 7.67986,-17.15344 17.15344,-17.15344h45.1882c9.47358,0 17.15344,7.67986 17.15344,17.15344v45.1882c0,9.47358 -7.67986,17.15344 -17.15344,17.15344z" fill="#ff8080"/>
+                        <path d="M193.68068,232.99033c-8.28427,0 -15,-6.71573 -15,-15v-39.51527c0,-8.28427 6.71573,-15 15,-15h39.51527c8.28427,0 15,6.71573 15,15v39.51527c0,8.28427 -6.71573,15 -15,15z" fill="#80ff95"/>
+                    </g>
+                </g>
+            </svg>
+        </div>
+
+        <!-- 2. VÒNG XOAY ĐỔI MÀU Ở DƯỚI -->
+        <svg class="spinner" viewBox="25 25 50 50">
+            <circle class="path light-green" cx="50" cy="50" r="20"></circle>
+            <circle class="path light-blue" cx="50" cy="50" r="20"></circle>
+            <circle class="path light-red" cx="50" cy="50" r="20"></circle>
+            <circle class="path light-yellow" cx="50" cy="50" r="20"></circle>
+        </svg>
+    </div>
+
+    <script>
+        let dots = 0;
+        setInterval(() => {
+            dots = (dots + 1) % 4;
+            document.title = "Load" + ".".repeat(dots);
+        }, 500);
+    </script>
+</body>
+</html>
