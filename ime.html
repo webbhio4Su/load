@@ -6,7 +6,7 @@
 
 <title>iMell</title>
 
-<!-- Google Font -->
+<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -18,6 +18,36 @@
 <link id="favicon" rel="icon" type="image/svg+xml">
 
 <style>
+/* =========================================================
+   THEME
+   ========================================================= */
+
+:root {
+  --bg: #000000;
+  --fg: #ffffff;
+
+  --logo-outer: #ffffff;
+  --logo-middle: #000000;
+  --logo-inner: #ffffff;
+}
+
+/* Light mode */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #ffffff;
+    --fg: #000000;
+
+    --logo-outer: #000000;
+    --logo-middle: #ffffff;
+    --logo-inner: #000000;
+  }
+}
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
 html,
 body {
   margin: 0;
@@ -26,18 +56,28 @@ body {
 }
 
 body {
-  background: #000;
+  background: var(--bg);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   overflow: hidden;
+
+  transition:
+    background-color 0.15s linear;
 }
 
-/* Logo + chữ */
+
+/* =========================================================
+   LOGO + TEXT
+   ========================================================= */
+
 .logo-text {
   display: flex;
   align-items: center;
   justify-content: center;
+
   gap: 22px;
 
   user-select: none;
@@ -45,29 +85,49 @@ body {
   -moz-user-select: none;
 }
 
-/* Logo */
+
+/* =========================================================
+   WEB LOGO
+   ========================================================= */
+
 .logo {
   width: 100px;
   height: 100px;
+
   flex-shrink: 0;
 
   transform-origin: center center;
+
   will-change: transform;
+
+  display: block;
 }
 
-/* Chữ */
+
+/* =========================================================
+   iMell TEXT
+   ========================================================= */
+
 .sample {
   font-family: "Fredoka", sans-serif;
+
   font-size: 100px;
   font-weight: 600;
-  color: #fff;
+
+  color: var(--fg);
+
   line-height: 1;
 
   user-select: none;
   -webkit-user-select: none;
 
-  /* Không cho font fallback nhảy ra trước */
+  /*
+    Ẩn trong lúc Google Fonts đang tải
+    để không bị font cũ → Fredoka sau đó.
+  */
   visibility: hidden;
+
+  transition: color 0.15s linear;
 }
 
 .sample.font-ready {
@@ -76,20 +136,25 @@ body {
 </style>
 </head>
 
+
 <body>
 
 <div class="logo-text">
 
-  <!-- LOGO WEB -->
+  <!-- =====================================================
+       iMell LOGO
+       ===================================================== -->
+
   <svg
     class="logo"
     viewBox="0 0 113.34675 113.34675"
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
   >
+
     <g transform="translate(-182.67759,-124.34157)">
 
-      <!-- Nền trắng -->
+      <!-- Outer -->
       <path
         d="M182.67759,149.34157
         c0,-13.80712 11.19288,-25 25,-25
@@ -99,10 +164,10 @@ body {
         c0,13.80712 -11.19288,25 -25,25
         h-63.34675
         c-13.80712,0 -25,-11.19288 -25,-25z"
-        fill="#ffffff"
+        fill="var(--logo-outer)"
       />
 
-      <!-- Hình đen bên trong -->
+      <!-- Middle -->
       <path
         d="M202.52775,195.53801
         c-7.66241,-7.66241 -7.66241,-20.08564 0,-27.74805
@@ -112,10 +177,10 @@ body {
         c7.66241,7.66241 7.66241,20.08564 0,27.74805
         l-23.96413,23.96413
         c-7.66241,7.66241 -20.08564,7.66241 -27.74805,0z"
-        fill="#000000"
+        fill="var(--logo-middle)"
       />
 
-      <!-- Hình trắng giữa -->
+      <!-- Inner -->
       <path
         d="M221.22588,169.06423
         c0,-3.6121 2.92818,-6.54028 6.54028,-6.54028
@@ -125,50 +190,94 @@ body {
         c0,3.6121 -2.92818,6.54028 -6.54028,6.54028
         h-25.19951
         c-3.6121,0 -6.54028,-2.92818 -6.54028,-6.54028z"
-        fill="#ffffff"
+        fill="var(--logo-inner)"
       />
 
     </g>
+
   </svg>
 
-  <!-- TÊN -->
+
+  <!-- =====================================================
+       WORDMARK
+       ===================================================== -->
+
   <div class="sample">iMell</div>
 
 </div>
 
+
 <script>
+
 /* =========================================================
-   GOOGLE FONT
-   Chờ Fredoka load xong rồi mới hiện chữ
+   GOOGLE FONT LOADING
    ========================================================= */
 
 if (document.fonts) {
+
   document.fonts.ready.then(() => {
-    document.querySelector(".sample").classList.add("font-ready");
+
+    document
+      .querySelector(".sample")
+      .classList
+      .add("font-ready");
+
   });
+
 } else {
-  document.querySelector(".sample").classList.add("font-ready");
+
+  document
+    .querySelector(".sample")
+    .classList
+    .add("font-ready");
+
 }
 
 
 /* =========================================================
    FAVICON
-   Không dùng replace white/black nữa
-   nên KHÔNG bị đổi màu sai
    ========================================================= */
 
-const favicon = document.getElementById("favicon");
+const favicon =
+  document.getElementById("favicon");
+
 
 function updateFavicon() {
 
   const darkMode =
     window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .matches;
 
-  /* Màu favicon */
-  const outerColor = darkMode ? "#000000" : "#ffffff";
-  const middleColor = darkMode ? "#ffffff" : "#000000";
-  const innerColor = darkMode ? "#000000" : "#ffffff";
+
+  /*
+    DARK
+      nền favicon  = đen
+      giữa          = trắng
+      trong         = đen
+
+    LIGHT
+      nền favicon  = trắng
+      giữa          = đen
+      trong         = trắng
+  */
+
+  const outerColor =
+    darkMode ? "#ffffff" : "#000000";
+
+  const middleColor =
+    darkMode ? "#000000" : "#ffffff";
+
+  const innerColor =
+    darkMode ? "#ffffff" : "#000000";
+
+
+  /*
+    Dùng placeholder màu riêng.
+    Không replace white → black → white,
+    tránh lỗi đảo màu dây chuyền.
+  */
 
   const svg = `
     <svg
@@ -176,7 +285,6 @@ function updateFavicon() {
       viewBox="0 0 113.34675 113.34675"
     >
 
-      <!-- Nền -->
       <path
         d="M182.67759,149.34157
         c0,-13.80712 11.19288,-25 25,-25
@@ -190,7 +298,6 @@ function updateFavicon() {
         fill="${outerColor}"
       />
 
-      <!-- Hình giữa -->
       <path
         d="M202.52775,195.53801
         c-7.66241,-7.66241 -7.66241,-20.08564 0,-27.74805
@@ -204,7 +311,6 @@ function updateFavicon() {
         fill="${middleColor}"
       />
 
-      <!-- Hình trong -->
       <path
         d="M221.22588,169.06423
         c0,-3.6121 2.92818,-6.54028 6.54028,-6.54028
@@ -221,102 +327,167 @@ function updateFavicon() {
     </svg>
   `;
 
+
   favicon.href =
     "data:image/svg+xml;charset=utf-8," +
     encodeURIComponent(svg);
 }
 
+
 updateFavicon();
 
 
-/* Theo dõi đổi sáng/tối */
-if (window.matchMedia) {
+/* =========================================================
+   THEME CHANGE LISTENER
+   ========================================================= */
 
-  const themeQuery =
-    window.matchMedia("(prefers-color-scheme: dark)");
+const themeQuery =
+  window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  );
 
-  if (themeQuery.addEventListener) {
-    themeQuery.addEventListener("change", updateFavicon);
-  } else if (themeQuery.addListener) {
-    themeQuery.addListener(updateFavicon);
-  }
+
+if (themeQuery.addEventListener) {
+
+  themeQuery.addEventListener(
+    "change",
+    updateFavicon
+  );
+
+} else if (themeQuery.addListener) {
+
+  themeQuery.addListener(
+    updateFavicon
+  );
+
 }
 
 
 /* =========================================================
-   iMell LOGO ANIMATION
+   LOGO ANIMATION
+   =========================================================
 
-   15° mỗi bước
-   0.033 giây mỗi bước
-   6 bước
-   sau đó nghỉ 1.35790001 giây
+   15°
+   ↓
+   30°
+   ↓
+   45°
+   ↓
+   60°
+   ↓
+   75°
+   ↓
+   90°
 
-   Tổng:
-   15 → 30 → 45 → 60 → 75 → 90
-   rồi nghỉ
-   rồi lặp lại
+   Mỗi bước: 0.033 giây
+
+   Sau 6 bước:
+   nghỉ 1.35790001 giây
+
+   Sau đó lặp lại.
    ========================================================= */
 
-const logo = document.querySelector(".logo");
+const logo =
+  document.querySelector(".logo");
+
 
 const STEP = 15;
+
 const STEP_TIME = 33;
+
 const STEPS = 6;
+
 const PAUSE = 1357.90001;
+
+
+/* Tổng thời gian một chu kỳ */
 
 const CYCLE_TIME =
   STEP_TIME * STEPS + PAUSE;
 
-const startTime = performance.now();
+
+/*
+  Mốc thời gian cố định.
+  Không reset khi đổi tab.
+*/
+
+const startTime =
+  performance.now();
 
 
-function animateLogo(now) {
-
-  /*
-    Dùng performance.now()
-    thay vì setTimeout()
-
-    nên khi chuyển sang tab khác,
-    khi quay lại nó tính theo thời gian thực
-    thay vì bị lệch từng bước.
-  */
+function getRotation(now) {
 
   const elapsed =
     now - startTime;
 
+
   const cycle =
     elapsed % CYCLE_TIME;
 
+
   let rotation;
 
-  if (cycle < STEP_TIME * STEPS) {
+
+  /*
+    6 bước xoay
+  */
+
+  if (
+    cycle <
+    STEP_TIME * STEPS
+  ) {
 
     const step =
-      Math.floor(cycle / STEP_TIME) + 1;
+      Math.floor(
+        cycle / STEP_TIME
+      ) + 1;
+
 
     rotation =
       step * STEP;
 
   } else {
 
+    /*
+      Đang trong khoảng nghỉ
+    */
+
     rotation =
       STEPS * STEP;
   }
 
-  logo.style.transform =
-    `rotate(${rotation}deg)`;
 
-  requestAnimationFrame(animateLogo);
+  return rotation;
 }
 
 
-/* Bắt đầu */
-requestAnimationFrame(animateLogo);
+/* =========================================================
+   ANIMATION LOOP
+   ========================================================= */
+
+function animateLogo(now) {
+
+  logo.style.transform =
+    `rotate(${getRotation(now)}deg)`;
+
+
+  requestAnimationFrame(
+    animateLogo
+  );
+}
+
+
+/*
+  Bắt đầu animation ngay lập tức
+*/
+
+requestAnimationFrame(
+  animateLogo
+);
 
 
 /* =========================================================
    KHI QUAY LẠI TAB
-   Đồng bộ lại ngay lập tức
    ========================================================= */
 
 document.addEventListener(
@@ -328,33 +499,14 @@ document.addEventListener(
       const now =
         performance.now();
 
-      const elapsed =
-        now - startTime;
-
-      const cycle =
-        elapsed % CYCLE_TIME;
-
-      let rotation;
-
-      if (cycle < STEP_TIME * STEPS) {
-
-        const step =
-          Math.floor(cycle / STEP_TIME) + 1;
-
-        rotation =
-          step * STEP;
-
-      } else {
-
-        rotation =
-          STEPS * STEP;
-      }
 
       logo.style.transform =
-        `rotate(${rotation}deg)`;
+        `rotate(${getRotation(now)}deg`;
     }
+
   }
 );
+
 </script>
 
 </body>
