@@ -96,7 +96,7 @@ async function animateLogo(){
 
       // Xoay phải 15 độ
       rotation += 15;
-      logo.style.transform = rotate(${rotation}deg);
+      logo.style.transform = `rotate(${rotation}deg)`;
 
       // Đợi 0.033 giây
       await new Promise(resolve => setTimeout(resolve, 33));
