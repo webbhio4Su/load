@@ -6,8 +6,26 @@
 
 <title>iMell</title>
 
+<!-- Favicon tĩnh -->
+<link
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='white'/%3E%3Crect x='25' y='25' width='50' height='50' rx='8' fill='black' transform='rotate(45 50 50)'/%3E%3Crect x='38' y='38' width='24' height='24' rx='5' fill='white'/%3E%3C/svg%3E"
+>
+
+<!-- Fredoka -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&display=swap"
+    rel="stylesheet"
+>
+
 <style>
-html, body {
+
+html,
+body {
     margin: 0;
     width: 100%;
     height: 100%;
@@ -15,65 +33,102 @@ html, body {
 
 body {
     background: #000;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     overflow: hidden;
 }
 
+
+/* =========================
+   LOGO + TEXT
+========================= */
+
 .logo-text {
+
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     gap: 22px;
+
+    user-select: none;
+
+    /* Ban đầu chưa hiện */
     opacity: 0;
     visibility: hidden;
-    user-select: none;
 }
 
+
+/* Sau 0.3 giây */
 .logo-text.show {
+
     opacity: 1;
     visibility: visible;
 }
 
+
+/* =========================
+   LOGO
+========================= */
+
 .logo {
+
     width: 100px;
     height: 100px;
+
     flex-shrink: 0;
 
-    /* Quan trọng: logo web xoay quanh tâm */
-    transform-origin: center center;
+    /*
+       Đảm bảo xoay quanh chính giữa
+    */
+    transform-origin: 50% 50%;
 }
+
+
+/* =========================
+   iMell
+========================= */
 
 .sample {
+
     font-family: "Fredoka", sans-serif;
+
     font-size: 100px;
+
     font-weight: 600;
+
     color: white;
+
     line-height: 1;
 }
+
 </style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&display=swap"
-    rel="stylesheet"
->
-
 </head>
+
 
 <body>
 
+
 <div class="logo-text" id="logoText">
 
-    <!-- LOGO WEB -->
+
+    <!-- =====================
+         LOGO WEB
+    ====================== -->
+
     <svg
         class="logo"
         id="mainLogo"
         viewBox="0 0 100 100"
         xmlns="http://www.w3.org/2000/svg"
     >
+
+        <!-- Nền trắng -->
+
         <rect
             x="0"
             y="0"
@@ -82,6 +137,9 @@ body {
             rx="22"
             fill="white"
         />
+
+
+        <!-- Hình vuông đen xoay 45° -->
 
         <rect
             x="25"
@@ -93,6 +151,9 @@ body {
             transform="rotate(45 50 50)"
         />
 
+
+        <!-- Lỗ trắng -->
+
         <rect
             x="38"
             y="38"
@@ -101,189 +162,117 @@ body {
             rx="5"
             fill="white"
         />
+
     </svg>
 
-    <div class="sample">iMell</div>
+
+    <!-- =====================
+         TEXT
+    ====================== -->
+
+    <div class="sample">
+        iMell
+    </div>
+
 
 </div>
 
 
+
 <script>
 
+
+/* =========================
+   LẤY ELEMENT
+========================= */
+
 const logoText = document.getElementById("logoText");
+
 const mainLogo = document.getElementById("mainLogo");
+
+
+/* =========================
+   GÓC XOAY
+========================= */
 
 let rotation = 0;
 
 
-/* ================================
-   FAVICON
-================================ */
-
-const canvas = document.createElement("canvas");
-
-canvas.width = 64;
-canvas.height = 64;
-
-const ctx = canvas.getContext("2d");
-
-const favicon = document.createElement("link");
-
-favicon.rel = "icon";
-favicon.type = "image/png";
-
-document.head.appendChild(favicon);
-
-
-/* SVG favicon */
-
-const faviconSVG = `
-<svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="100"
-    height="100"
-    viewBox="0 0 100 100"
->
-
-    <rect
-        x="0"
-        y="0"
-        width="100"
-        height="100"
-        rx="22"
-        fill="white"
-    />
-
-    <rect
-        x="25"
-        y="25"
-        width="50"
-        height="50"
-        rx="8"
-        fill="black"
-        transform="rotate(45 50 50)"
-    />
-
-    <rect
-        x="38"
-        y="38"
-        width="24"
-        height="24"
-        rx="5"
-        fill="white"
-    />
-
-</svg>
-`;
-
-const svgBlob = new Blob(
-    [faviconSVG],
-    { type: "image/svg+xml" }
-);
-
-const svgURL = URL.createObjectURL(svgBlob);
-
-const faviconImage = new Image();
-
-faviconImage.src = svgURL;
-
-
-/* ================================
-   CẬP NHẬT FAVICON
-================================ */
-
-function updateFavicon() {
-
-    ctx.clearRect(0, 0, 64, 64);
-
-    ctx.save();
-
-    ctx.translate(32, 32);
-
-    ctx.rotate(
-        rotation * Math.PI / 180
-    );
-
-    ctx.drawImage(
-        faviconImage,
-        -32,
-        -32,
-        64,
-        64
-    );
-
-    ctx.restore();
-
-    favicon.href = canvas.toDataURL("image/png");
-}
-
-
-/* ================================
-   XOAY LOGO WEB + TAB
-================================ */
-
-async function animateLogo() {
-
-    while (true) {
-
-        for (let i = 0; i < 6; i++) {
-
-            rotation += 15;
-
-            /*
-             * LOGO TRÊN WEB
-             */
-            mainLogo.style.transform =
-                `rotate(${rotation}deg)`;
-
-
-            /*
-             * LOGO TRÊN TAB
-             */
-            updateFavicon();
-
-
-            /*
-             * 33ms
-             */
-            await new Promise(resolve => {
-                setTimeout(resolve, 33);
-            });
-        }
-
-
-        /*
-         * Nghỉ
-         */
-        await new Promise(resolve => {
-            setTimeout(resolve, 1357.90001);
-        });
-    }
-}
-
-
-/* ================================
+/* =========================
    HIỆN SAU 0.3 GIÂY
-================================ */
+========================= */
 
 setTimeout(() => {
 
     logoText.classList.add("show");
 
     /*
-     * Đợi favicon load rồi bắt đầu
-     */
-    if (faviconImage.complete) {
-        updateFavicon();
-        animateLogo();
-    } else {
-        faviconImage.onload = () => {
-            updateFavicon();
-            animateLogo();
-        };
-    }
+       Bắt đầu xoay logo web
+    */
+
+    animateLogo();
 
 }, 300);
+
+
+
+/* =========================
+   ANIMATION LOGO WEB
+========================= */
+
+async function animateLogo() {
+
+    while (true) {
+
+
+        /*
+           6 lần
+           mỗi lần +15°
+        */
+
+        for (let i = 0; i < 6; i++) {
+
+
+            rotation += 15;
+
+
+            /*
+               CHỈ XOAY LOGO TRÊN WEB
+
+               FAVICON KHÔNG BỊ ĐỤNG TỚI
+            */
+
+            mainLogo.style.transform =
+                `rotate(${rotation}deg)`;
+
+
+            /*
+               Chờ 33ms
+            */
+
+            await new Promise(resolve => {
+
+                setTimeout(resolve, 33);
+
+            });
+
+        }
+
+
+        /*
+           Xoay xong 90°
+           nghỉ 1357.90001ms
+        */
+
+        await new Promise(resolve => {
+
+            setTimeout(resolve, 1357.90001);
+
+        });
+
+    }
+
+}
 
 </script>
 
