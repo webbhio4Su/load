@@ -1,223 +1,224 @@
 <!doctype html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>iMell</title>
 
-<!-- Favicon Dark -->
-<link
-    id="faviconDark"
-    rel="icon"
-    type="image/svg+xml"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='white'/%3E%3Crect x='25' y='25' width='50' height='50' rx='8' fill='black' transform='rotate(45 50 50)'/%3E%3Crect x='38' y='38' width='24' height='24' rx='5' fill='white'/%3E%3C/svg%3E"
->
-
-<!-- Favicon Light -->
-<link
-    id="faviconLight"
-    rel="icon"
-    type="image/svg+xml"
-    media="(prefers-color-scheme: light)"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='black'/%3E%3Crect x='25' y='25' width='50' height='50' rx='8' fill='white' transform='rotate(45 50 50)'/%3E%3Crect x='38' y='38' width='24' height='24' rx='5' fill='black'/%3E%3C/svg%3E"
->
-
-<!-- Fredoka -->
+<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link
-    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&display=swap"
-    rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
 >
 
 <style>
 html,
 body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
+  margin: 0;
+  width: 100%;
+  height: 100%;
 }
 
 body {
-    background: #000;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Không cho font nhảy từ font mặc định sang Fredoka */
+.sample {
+  font-family: "Fredoka", sans-serif;
+  font-size: 100px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1;
 
-    overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
 
-    transition: background 0.2s ease;
+  visibility: hidden;
+}
+
+.font-loaded .sample {
+  visibility: visible;
 }
 
 .logo-text {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
 
-    gap: 22px;
-
-    user-select: none;
-
-    opacity: 0;
-    visibility: hidden;
-}
-
-.logo-text.show {
-    opacity: 1;
-    visibility: visible;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .logo {
-    width: 100px;
-    height: 100px;
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
 
-    flex-shrink: 0;
+  transform: rotate(0deg);
+  transform-origin: center center;
 
-    transform-origin: 50% 50%;
-}
-
-.sample {
-    font-family: "Fredoka", sans-serif;
-
-    font-size: 100px;
-    font-weight: 600;
-
-    color: white;
-
-    line-height: 1;
-
-    transition: color 0.2s ease;
-}
-
-/* =========================
-   LIGHT MODE
-   ========================= */
-
-@media (prefers-color-scheme: light) {
-
-    body {
-        background: #fff;
-    }
-
-    .sample {
-        color: #000;
-    }
-
-    .logo {
-        filter: invert(1);
-    }
+  will-change: transform;
 }
 </style>
 </head>
 
 <body>
 
-<div class="logo-text" id="logoText">
+<div class="logo-text">
 
-    <svg
-        class="logo"
-        id="mainLogo"
-        viewBox="0 0 100 100"
-        xmlns="http://www.w3.org/2000/svg"
-    >
+  <!-- iMell LOGO -->
+  <svg
+    class="logo"
+    viewBox="0 0 113.34675 113.34675"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-label="iMell logo"
+  >
+    <g transform="translate(-182.67759,-124.34157)">
 
-        <!-- Nền -->
-        <rect
-            x="0"
-            y="0"
-            width="100"
-            height="100"
-            rx="22"
-            fill="white"
-        />
+      <!-- Khung trắng -->
+      <path
+        d="M182.67759,149.34157
+           c0,-13.80712 11.19288,-25 25,-25
+           l63.34675,0
+           c13.80712,0 25,11.19288 25,25
+           l0,63.34675
+           c0,13.80712 -11.19288,25 -25,25
+           h-63.34675
+           c-13.80712,0 -25,-11.19288 -25,-25z"
+        fill="#ffffff"
+      />
 
-        <!-- Hình vuông xoay -->
-        <rect
-            x="25"
-            y="25"
-            width="50"
-            height="50"
-            rx="8"
-            fill="black"
-            transform="rotate(45 50 50)"
-        />
+      <!-- Hình đen bên trong -->
+      <path
+        d="M202.52775,195.53801
+           c-7.66241,-7.66241 -7.66241,-20.08564 0,-27.74805
+           l23.96413,-23.96413
+           c7.66241,-7.66241 20.08564,-7.66241 27.74805,0
+           l23.96413,23.96413
+           c7.66241,7.66241 7.66241,20.08564 0,27.74805
+           l-23.96413,23.96413
+           c-7.66241,7.66241 -20.08564,7.66241 -27.74805,0z"
+        fill="#000000"
+      />
 
-        <!-- Lỗ giữa -->
-        <rect
-            x="38"
-            y="38"
-            width="24"
-            height="24"
-            rx="5"
-            fill="white"
-        />
+      <!-- Hình trắng bên trong -->
+      <path
+        d="M221.22588,169.06423
+           c0,-3.6121 2.92818,-6.54028 6.54028,-6.54028
+           h25.19951
+           c3.6121,0 6.54028,2.92818 6.54028,6.54028
+           l0,25.19951
+           c0,3.6121 -2.92818,6.54028 -6.54028,6.54028
+           h-25.19951
+           c-3.6121,0 -6.54028,-2.92818 -6.54028,-6.54028z"
+        fill="#ffffff"
+      />
 
-    </svg>
+    </g>
+  </svg>
 
-    <div class="sample">
-        iMell
-    </div>
+  <div class="sample">iMell</div>
 
 </div>
 
 <script>
+/* =========================================
+   CHỜ GOOGLE FONTS TẢI XONG
+   ========================================= */
 
-const logoText = document.getElementById("logoText");
-const mainLogo = document.getElementById("mainLogo");
+document.fonts.ready.then(() => {
+  document.documentElement.classList.add("font-loaded");
+});
 
-let rotation = 0;
 
-/*
-    Xuất hiện sau 0.3 giây
-*/
-setTimeout(() => {
+/* =========================================
+   iMell LOGO ANIMATION
+   ========================================= */
 
-    logoText.classList.add("show");
-
-    animateLogo();
-
-}, 300);
-
+const logo = document.querySelector(".logo");
 
 /*
-    Animation logo WEB
-    Favicon không bị ảnh hưởng
+   Mỗi bước:
+   15 độ
+   ↓
+   0.033 giây
+
+   6 bước:
+   0 → 15 → 30 → 45 → 60 → 75 → 90
+
+   Sau 90 độ:
+   nghỉ 1.35790001 giây
+
+   Sau đó lặp lại.
 */
-async function animateLogo() {
 
-    while (true) {
+const STEP_TIME = 33;
+const PAUSE_TIME = 1357.90001;
+const STEP_ANGLE = 15;
+const STEP_COUNT = 6;
 
-        for (let i = 0; i < 6; i++) {
+const ROTATION_TIME =
+  STEP_TIME * STEP_COUNT;
 
-            rotation += 15;
+const CYCLE_TIME =
+  ROTATION_TIME + PAUSE_TIME;
 
-            mainLogo.style.transform =
-                `rotate(${rotation}deg)`;
+const startTime = performance.now();
 
-            await new Promise(resolve => {
 
-                setTimeout(resolve, 33);
+function updateLogo() {
 
-            });
+  const now = performance.now();
 
-        }
+  /*
+    Dùng thời gian thực thay vì
+    setTimeout(33) làm đồng hồ chính.
+  */
 
-        /*
-            Nghỉ sau khi xoay đủ 90°
-        */
-        await new Promise(resolve => {
+  const elapsed =
+    (now - startTime) % CYCLE_TIME;
 
-            setTimeout(resolve, 1357.90001);
+  let rotation;
 
-        });
 
-    }
+  /* Đang xoay */
+  if (elapsed < ROTATION_TIME) {
 
+    const step =
+      Math.floor(elapsed / STEP_TIME);
+
+    rotation =
+      step * STEP_ANGLE;
+
+  }
+
+  /* Đã xoay tới 90° và đang nghỉ */
+  else {
+
+    rotation =
+      STEP_COUNT * STEP_ANGLE;
+
+  }
+
+
+  logo.style.transform =
+    `rotate(${rotation}deg)`;
+
+
+  requestAnimationFrame(updateLogo);
 }
 
+
+updateLogo();
 </script>
 
 </body>
