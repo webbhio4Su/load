@@ -6,9 +6,7 @@
 
 <title>iMell</title>
 
-<!-- =========================
-     GOOGLE FONT
-========================= -->
+<!-- Google Font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -16,102 +14,10 @@
   rel="stylesheet"
 >
 
-<!-- =========================
-     FAVICON / LOGO TAB
-========================= -->
-<script>
-(function () {
-  const faviconSVG = `
-  <svg xmlns="http://www.w3.org/2000/svg"
-       viewBox="0 0 113.34675 113.34675">
+<!-- Favicon -->
+<link id="favicon" rel="icon" type="image/svg+xml">
 
-    <rect
-      x="0"
-      y="0"
-      width="113.34675"
-      height="113.34675"
-      rx="25"
-      fill="white"/>
-
-    <path
-      d="M19.85016,71.19644
-         c-7.66241,-7.66241 -7.66241,-20.08564 0,-27.74805
-         l23.96413,-23.96413
-         c7.66241,-7.66241 20.08564,-7.66241 27.74805,0
-         l23.96413,23.96413
-         c7.66241,7.66241 7.66241,20.08564 0,27.74805
-         l-23.96413,23.96413
-         c-7.66241,7.66241 -20.08564,7.66241 -27.74805,0z"
-      fill="black"/>
-
-    <rect
-      x="38.54829"
-      y="38.18109"
-      width="38.28007"
-      height="38.28007"
-      rx="6.54028"
-      fill="white"/>
-  </svg>`;
-
-  const favicon = document.createElement("link");
-  favicon.rel = "icon";
-  favicon.type = "image/svg+xml";
-  favicon.id = "iMellFavicon";
-
-  function updateFavicon(darkMode) {
-    const svg = faviconSVG
-      .replace(/white/g, darkMode ? "black" : "white")
-      .replace(/black/g, darkMode ? "white" : "black");
-
-    favicon.href =
-      "data:image/svg+xml;charset=utf-8," +
-      encodeURIComponent(svg);
-  }
-
-  document.head.appendChild(favicon);
-
-  const media = window.matchMedia("(prefers-color-scheme: dark)");
-
-  function updateTheme() {
-    updateFavicon(media.matches);
-  }
-
-  updateTheme();
-
-  if (media.addEventListener) {
-    media.addEventListener("change", updateTheme);
-  } else {
-    media.addListener(updateTheme);
-  }
-})();
-</script>
-
-<!-- =========================
-     STYLE
-========================= -->
 <style>
-
-:root {
-  --bg: #ffffff;
-  --fg: #000000;
-  --logo-bg: #000000;
-  --logo-inner: #ffffff;
-}
-
-/* DARK MODE */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #000000;
-    --fg: #ffffff;
-    --logo-bg: #ffffff;
-    --logo-inner: #000000;
-  }
-}
-
-* {
-  box-sizing: border-box;
-}
-
 html,
 body {
   margin: 0;
@@ -120,98 +26,53 @@ body {
 }
 
 body {
-  background: var(--bg);
-  color: var(--fg);
-
+  background: #000;
   display: flex;
   align-items: center;
   justify-content: center;
-
   overflow: hidden;
-
-  transition:
-    background-color 0.15s linear,
-    color 0.15s linear;
 }
 
-/* =========================
-   LOGO + TEXT
-========================= */
-
+/* Logo + chữ */
 .logo-text {
   display: flex;
   align-items: center;
   justify-content: center;
-
   gap: 22px;
 
   user-select: none;
   -webkit-user-select: none;
-
-  -webkit-touch-callout: none;
+  -moz-user-select: none;
 }
 
-/* =========================
-   SVG LOGO
-========================= */
-
+/* Logo */
 .logo {
   width: 100px;
   height: 100px;
-
   flex-shrink: 0;
 
-  display: block;
-
   transform-origin: center center;
-
   will-change: transform;
 }
 
-/* =========================
-   LOGO COLORS
-========================= */
-
-.logo .outer {
-  fill: var(--logo-bg);
-}
-
-.logo .middle {
-  fill: var(--logo-inner);
-}
-
-.logo .inner {
-  fill: var(--logo-bg);
-}
-
-/* =========================
-   iMell TEXT
-========================= */
-
+/* Chữ */
 .sample {
   font-family: "Fredoka", sans-serif;
-
   font-size: 100px;
   font-weight: 600;
-
-  color: var(--fg);
-
+  color: #fff;
   line-height: 1;
-
-  white-space: nowrap;
 
   user-select: none;
   -webkit-user-select: none;
 
-  /* Không hiện fallback font trước */
+  /* Không cho font fallback nhảy ra trước */
   visibility: hidden;
 }
 
-/* Font đã sẵn sàng */
-.font-ready .sample {
+.sample.font-ready {
   visibility: visible;
 }
-
 </style>
 </head>
 
@@ -219,194 +80,244 @@ body {
 
 <div class="logo-text">
 
-  <!-- =========================
-       iMell SVG LOGO
-  ========================= -->
-
+  <!-- LOGO WEB -->
   <svg
     class="logo"
-    version="1.1"
+    viewBox="0 0 113.34675 113.34675"
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0,0,113.34675,113.34675"
-    aria-label="iMell logo"
+    aria-hidden="true"
   >
-
     <g transform="translate(-182.67759,-124.34157)">
 
-      <g
-        stroke="none"
-        stroke-miterlimit="10"
-      >
+      <!-- Nền trắng -->
+      <path
+        d="M182.67759,149.34157
+        c0,-13.80712 11.19288,-25 25,-25
+        l63.34675,0
+        c13.80712,0 25,11.19288 25,25
+        l0,63.34675
+        c0,13.80712 -11.19288,25 -25,25
+        h-63.34675
+        c-13.80712,0 -25,-11.19288 -25,-25z"
+        fill="#ffffff"
+      />
 
-        <!-- Outer -->
-        <path
-          class="outer"
-          d="
-          M182.67759,149.34157
-          c0,-13.80712 11.19288,-25 25,-25
-          l63.34675,0
-          c13.80712,0 25,11.19288 25,25
-          l0,63.34675
-          c0,13.80712 -11.19288,25 -25,25
-          h-63.34675
-          c-13.80712,0 -25,-11.19288 -25,-25z
-          "
-        />
+      <!-- Hình đen bên trong -->
+      <path
+        d="M202.52775,195.53801
+        c-7.66241,-7.66241 -7.66241,-20.08564 0,-27.74805
+        l23.96413,-23.96413
+        c7.66241,-7.66241 20.08564,-7.66241 27.74805,0
+        l23.96413,23.96413
+        c7.66241,7.66241 7.66241,20.08564 0,27.74805
+        l-23.96413,23.96413
+        c-7.66241,7.66241 -20.08564,7.66241 -27.74805,0z"
+        fill="#000000"
+      />
 
-        <!-- Middle -->
-        <path
-          class="middle"
-          d="
-          M202.52775,195.53801
-          c-7.66241,-7.66241 -7.66241,-20.08564 0,-27.74805
-          l23.96413,-23.96413
-          c7.66241,-7.66241 20.08564,-7.66241 27.74805,0
-          l23.96413,23.96413
-          c7.66241,7.66241 7.66241,20.08564 0,27.74805
-          l-23.96413,23.96413
-          c-7.66241,7.66241 -20.08564,7.66241 -27.74805,0z
-          "
-        />
+      <!-- Hình trắng giữa -->
+      <path
+        d="M221.22588,169.06423
+        c0,-3.6121 2.92818,-6.54028 6.54028,-6.54028
+        h25.19951
+        c3.6121,0 6.54028,2.92818 6.54028,6.54028
+        l0,25.19951
+        c0,3.6121 -2.92818,6.54028 -6.54028,6.54028
+        h-25.19951
+        c-3.6121,0 -6.54028,-2.92818 -6.54028,-6.54028z"
+        fill="#ffffff"
+      />
 
-        <!-- Inner -->
-        <path
-          class="inner"
-          d="
-          M221.22588,169.06423
-          c0,-3.6121 2.92818,-6.54028 6.54028,-6.54028
-          h25.19951
-          c3.6121,0 6.54028,2.92818 6.54028,6.54028
-          l0,25.19951
-          c0,3.6121 -2.92818,6.54028 -6.54028,6.54028
-          h-25.19951
-          c-3.6121,0 -6.54028,-2.92818 -6.54028,-6.54028z
-          "
-        />
-
-      </g>
     </g>
-
   </svg>
 
-  <!-- =========================
-       TEXT
-  ========================= -->
-
+  <!-- TÊN -->
   <div class="sample">iMell</div>
 
 </div>
 
-
 <script>
+/* =========================================================
+   GOOGLE FONT
+   Chờ Fredoka load xong rồi mới hiện chữ
+   ========================================================= */
+
+if (document.fonts) {
+  document.fonts.ready.then(() => {
+    document.querySelector(".sample").classList.add("font-ready");
+  });
+} else {
+  document.querySelector(".sample").classList.add("font-ready");
+}
+
 
 /* =========================================================
-   CHỜ GOOGLE FONTS
-   → tránh hiện font mặc định rồi nhảy sang Fredoka
-========================================================= */
+   FAVICON
+   Không dùng replace white/black nữa
+   nên KHÔNG bị đổi màu sai
+   ========================================================= */
 
-if (document.fonts && document.fonts.ready) {
+const favicon = document.getElementById("favicon");
 
-  document.fonts.ready.then(() => {
-    document.documentElement.classList.add("font-ready");
-  });
+function updateFavicon() {
 
-} else {
+  const darkMode =
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-  document.documentElement.classList.add("font-ready");
+  /* Màu favicon */
+  const outerColor = darkMode ? "#000000" : "#ffffff";
+  const middleColor = darkMode ? "#ffffff" : "#000000";
+  const innerColor = darkMode ? "#000000" : "#ffffff";
 
+  const svg = `
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 113.34675 113.34675"
+    >
+
+      <!-- Nền -->
+      <path
+        d="M182.67759,149.34157
+        c0,-13.80712 11.19288,-25 25,-25
+        l63.34675,0
+        c13.80712,0 25,11.19288 25,25
+        l0,63.34675
+        c0,13.80712 -11.19288,25 -25,25
+        h-63.34675
+        c-13.80712,0 -25,-11.19288 -25,-25z"
+        transform="translate(-182.67759,-124.34157)"
+        fill="${outerColor}"
+      />
+
+      <!-- Hình giữa -->
+      <path
+        d="M202.52775,195.53801
+        c-7.66241,-7.66241 -7.66241,-20.08564 0,-27.74805
+        l23.96413,-23.96413
+        c7.66241,-7.66241 20.08564,-7.66241 27.74805,0
+        l23.96413,23.96413
+        c7.66241,7.66241 7.66241,20.08564 0,27.74805
+        l-23.96413,23.96413
+        c-7.66241,7.66241 -20.08564,7.66241 -27.74805,0z"
+        transform="translate(-182.67759,-124.34157)"
+        fill="${middleColor}"
+      />
+
+      <!-- Hình trong -->
+      <path
+        d="M221.22588,169.06423
+        c0,-3.6121 2.92818,-6.54028 6.54028,-6.54028
+        h25.19951
+        c3.6121,0 6.54028,2.92818 6.54028,6.54028
+        l0,25.19951
+        c0,3.6121 -2.92818,6.54028 -6.54028,6.54028
+        h-25.19951
+        c-3.6121,0 -6.54028,-2.92818 -6.54028,-6.54028z"
+        transform="translate(-182.67759,-124.34157)"
+        fill="${innerColor}"
+      />
+
+    </svg>
+  `;
+
+  favicon.href =
+    "data:image/svg+xml;charset=utf-8," +
+    encodeURIComponent(svg);
+}
+
+updateFavicon();
+
+
+/* Theo dõi đổi sáng/tối */
+if (window.matchMedia) {
+
+  const themeQuery =
+    window.matchMedia("(prefers-color-scheme: dark)");
+
+  if (themeQuery.addEventListener) {
+    themeQuery.addEventListener("change", updateFavicon);
+  } else if (themeQuery.addListener) {
+    themeQuery.addListener(updateFavicon);
+  }
 }
 
 
 /* =========================================================
    iMell LOGO ANIMATION
 
-   15° → 15° → 15° → 15° → 15° → 15°
-   mỗi bước ≈ 0.033 giây
+   15° mỗi bước
+   0.033 giây mỗi bước
+   6 bước
+   sau đó nghỉ 1.35790001 giây
 
-   Sau 6 bước:
-   nghỉ 1.35790001 giây
-
-   rồi lặp lại.
-========================================================= */
+   Tổng:
+   15 → 30 → 45 → 60 → 75 → 90
+   rồi nghỉ
+   rồi lặp lại
+   ========================================================= */
 
 const logo = document.querySelector(".logo");
-
-let rotation = 0;
 
 const STEP = 15;
 const STEP_TIME = 33;
 const STEPS = 6;
 const PAUSE = 1357.90001;
 
+const CYCLE_TIME =
+  STEP_TIME * STEPS + PAUSE;
 
-/* =========================================================
-   DÙNG CLOCK THỰC
+const startTime = performance.now();
 
-   Không phụ thuộc hoàn toàn vào setTimeout.
-
-   Nếu trình duyệt giảm FPS khi tab ở nền,
-   rotation vẫn dựa trên thời gian thực.
-========================================================= */
-
-let nextStep = performance.now();
-let step = 0;
-let pausedUntil = 0;
 
 function animateLogo(now) {
 
-  /* Đang trong khoảng nghỉ */
-  if (now < pausedUntil) {
-    requestAnimationFrame(animateLogo);
-    return;
+  /*
+    Dùng performance.now()
+    thay vì setTimeout()
+
+    nên khi chuyển sang tab khác,
+    khi quay lại nó tính theo thời gian thực
+    thay vì bị lệch từng bước.
+  */
+
+  const elapsed =
+    now - startTime;
+
+  const cycle =
+    elapsed % CYCLE_TIME;
+
+  let rotation;
+
+  if (cycle < STEP_TIME * STEPS) {
+
+    const step =
+      Math.floor(cycle / STEP_TIME) + 1;
+
+    rotation =
+      step * STEP;
+
+  } else {
+
+    rotation =
+      STEPS * STEP;
   }
 
-  /* Đã đến thời điểm xoay */
-  if (now >= nextStep) {
-
-    rotation += STEP;
-
-    logo.style.transform =
-      `rotate(${rotation}deg)`;
-
-    step++;
-
-    /* Hoàn thành 6 bước */
-    if (step >= STEPS) {
-
-      step = 0;
-
-      pausedUntil =
-        now + PAUSE;
-
-      nextStep =
-        pausedUntil;
-
-    } else {
-
-      nextStep =
-        now + STEP_TIME;
-
-    }
-
-  }
+  logo.style.transform =
+    `rotate(${rotation}deg)`;
 
   requestAnimationFrame(animateLogo);
 }
 
 
-/* =========================================================
-   BẮT ĐẦU NGAY LẬP TỨC
-========================================================= */
-
+/* Bắt đầu */
 requestAnimationFrame(animateLogo);
 
 
 /* =========================================================
-   KHI TAB QUAY LẠI
-
-   Tính lại ngay lập tức thay vì phải chờ
-   một chuỗi setTimeout cũ.
-========================================================= */
+   KHI QUAY LẠI TAB
+   Đồng bộ lại ngay lập tức
+   ========================================================= */
 
 document.addEventListener(
   "visibilitychange",
@@ -417,15 +328,33 @@ document.addEventListener(
       const now =
         performance.now();
 
-      if (now >= pausedUntil) {
-        nextStep = now;
+      const elapsed =
+        now - startTime;
+
+      const cycle =
+        elapsed % CYCLE_TIME;
+
+      let rotation;
+
+      if (cycle < STEP_TIME * STEPS) {
+
+        const step =
+          Math.floor(cycle / STEP_TIME) + 1;
+
+        rotation =
+          step * STEP;
+
+      } else {
+
+        rotation =
+          STEPS * STEP;
       }
 
+      logo.style.transform =
+        `rotate(${rotation}deg)`;
     }
-
   }
 );
-
 </script>
 
 </body>
