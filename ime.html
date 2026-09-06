@@ -6,11 +6,21 @@
 
 <title>iMell</title>
 
-<!-- Favicon tĩnh -->
+<!-- Favicon Dark -->
 <link
+    id="faviconDark"
     rel="icon"
     type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='white'/%3E%3Crect x='25' y='25' width='50' height='50' rx='8' fill='black' transform='rotate(45 50 50)'/%3E%3Crect x='38' y='38' width='24' height='24' rx='5' fill='white'/%3E%3C/svg%3E"
+>
+
+<!-- Favicon Light -->
+<link
+    id="faviconLight"
+    rel="icon"
+    type="image/svg+xml"
+    media="(prefers-color-scheme: light)"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='black'/%3E%3Crect x='25' y='25' width='50' height='50' rx='8' fill='white' transform='rotate(45 50 50)'/%3E%3Crect x='38' y='38' width='24' height='24' rx='5' fill='black'/%3E%3C/svg%3E"
 >
 
 <!-- Fredoka -->
@@ -23,7 +33,6 @@
 >
 
 <style>
-
 html,
 body {
     margin: 0;
@@ -39,17 +48,12 @@ body {
     justify-content: center;
 
     overflow: hidden;
+
+    transition: background 0.2s ease;
 }
 
-
-/* =========================
-   LOGO + TEXT
-========================= */
-
 .logo-text {
-
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -57,68 +61,61 @@ body {
 
     user-select: none;
 
-    /* Ban đầu chưa hiện */
     opacity: 0;
     visibility: hidden;
 }
 
-
-/* Sau 0.3 giây */
 .logo-text.show {
-
     opacity: 1;
     visibility: visible;
 }
 
-
-/* =========================
-   LOGO
-========================= */
-
 .logo {
-
     width: 100px;
     height: 100px;
 
     flex-shrink: 0;
 
-    /*
-       Đảm bảo xoay quanh chính giữa
-    */
     transform-origin: 50% 50%;
 }
 
-
-/* =========================
-   iMell
-========================= */
-
 .sample {
-
     font-family: "Fredoka", sans-serif;
 
     font-size: 100px;
-
     font-weight: 600;
 
     color: white;
 
     line-height: 1;
+
+    transition: color 0.2s ease;
 }
 
+/* =========================
+   LIGHT MODE
+   ========================= */
+
+@media (prefers-color-scheme: light) {
+
+    body {
+        background: #fff;
+    }
+
+    .sample {
+        color: #000;
+    }
+
+    .logo {
+        filter: invert(1);
+    }
+}
 </style>
 </head>
 
-
 <body>
 
-
 <div class="logo-text" id="logoText">
-
-
-    <!-- =====================
-         LOGO WEB
-    ====================== -->
 
     <svg
         class="logo"
@@ -127,8 +124,7 @@ body {
         xmlns="http://www.w3.org/2000/svg"
     >
 
-        <!-- Nền trắng -->
-
+        <!-- Nền -->
         <rect
             x="0"
             y="0"
@@ -138,9 +134,7 @@ body {
             fill="white"
         />
 
-
-        <!-- Hình vuông đen xoay 45° -->
-
+        <!-- Hình vuông xoay -->
         <rect
             x="25"
             y="25"
@@ -151,9 +145,7 @@ body {
             transform="rotate(45 50 50)"
         />
 
-
-        <!-- Lỗ trắng -->
-
+        <!-- Lỗ giữa -->
         <rect
             x="38"
             y="38"
@@ -165,90 +157,45 @@ body {
 
     </svg>
 
-
-    <!-- =====================
-         TEXT
-    ====================== -->
-
     <div class="sample">
         iMell
     </div>
 
-
 </div>
-
-
 
 <script>
 
-
-/* =========================
-   LẤY ELEMENT
-========================= */
-
 const logoText = document.getElementById("logoText");
-
 const mainLogo = document.getElementById("mainLogo");
-
-
-/* =========================
-   GÓC XOAY
-========================= */
 
 let rotation = 0;
 
-
-/* =========================
-   HIỆN SAU 0.3 GIÂY
-========================= */
-
+/*
+    Xuất hiện sau 0.3 giây
+*/
 setTimeout(() => {
 
     logoText.classList.add("show");
-
-    /*
-       Bắt đầu xoay logo web
-    */
 
     animateLogo();
 
 }, 300);
 
 
-
-/* =========================
-   ANIMATION LOGO WEB
-========================= */
-
+/*
+    Animation logo WEB
+    Favicon không bị ảnh hưởng
+*/
 async function animateLogo() {
 
     while (true) {
 
-
-        /*
-           6 lần
-           mỗi lần +15°
-        */
-
         for (let i = 0; i < 6; i++) {
-
 
             rotation += 15;
 
-
-            /*
-               CHỈ XOAY LOGO TRÊN WEB
-
-               FAVICON KHÔNG BỊ ĐỤNG TỚI
-            */
-
             mainLogo.style.transform =
                 `rotate(${rotation}deg)`;
-
-
-            /*
-               Chờ 33ms
-            */
 
             await new Promise(resolve => {
 
@@ -258,12 +205,9 @@ async function animateLogo() {
 
         }
 
-
         /*
-           Xoay xong 90°
-           nghỉ 1357.90001ms
+            Nghỉ sau khi xoay đủ 90°
         */
-
         await new Promise(resolve => {
 
             setTimeout(resolve, 1357.90001);
