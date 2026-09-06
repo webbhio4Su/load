@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>iMell</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+}
+
+body{
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.logo-text{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:22px;
+  user-select:none;
+  -webkit-user-select:none;
+}
+
+.logo{
+  width:100px;
+  height:100px;
+  flex-shrink:0;
+}
+
+.sample{
+  font-family:"Fredoka",sans-serif;
+  font-size:100px;
+  font-weight:600;
+  color:#fff;
+  line-height:1;
+}
+</style>
+</head>
+
+<body>
+
+<div class="logo-text">
+
+  <svg
+    class="logo"
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0,0,113.34675,113.34675">
+
+    <g transform="translate(-182.67759,-124.34157)">
+      <g stroke="none" stroke-miterlimit="10">
+
+        <path
+          d="M182.67759,149.34157c0,-13.80712 11.19288,-25 25,-25l63.34675,0c13.80712,0 25,11.19288 25,25l0,63.34675c0,13.80712 -11.19288,25 -25,25h-63.34675c-13.80712,0 -25,-11.19288 -25,-25z"
+          fill="#ffffff"/>
+
+        <path
+          d="M202.52775,195.53801c-7.66241,-7.66241 -7.66241,-20.08564 0,-27.74805l23.96413,-23.96413c7.66241,-7.66241 20.08564,-7.66241 27.74805,0l23.96413,23.96413c7.66241,7.66241 7.66241,20.08564 0,27.74805l-23.96413,23.96413c-7.66241,7.66241 -20.08564,7.66241 -27.74805,0z"
+          fill="#000000"/>
+
+        <path
+          d="M221.22588,169.06423c0,-3.6121 2.92818,-6.54028 6.54028,-6.54028h25.19951c3.6121,0 6.54028,2.92818 6.54028,6.54028l0,25.19951c0,3.6121 -2.92818,6.54028 -6.54028,6.54028h-25.19951c-3.6121,0 -6.54028,-2.92818 -6.54028,-6.54028z"
+          fill="#ffffff"/>
+
+      </g>
+    </g>
+
+  </svg>
+
+  <div class="sample">iMell</div>
+
+</div>
+
+<script>
+const logo = document.querySelector(".logo");
+
+let rotation = 0;
+
+async function animateLogo(){
+  while(true){
+
+    // Lặp lại 6 lần
+    for(let i = 0; i < 6; i++){
+
+      // Xoay phải 15 độ
+      rotation += 15;
+      logo.style.transform = rotate(${rotation}deg);
+
+      // Đợi 0.033 giây
+      await new Promise(resolve => setTimeout(resolve, 33));
+    }
+
+    // Đợi 1.35790001 giây
+    await new Promise(resolve => setTimeout(resolve, 1357.90001));
+  }
+}
+
+animateLogo();
+</script>
+
+</body>
+  </html>
